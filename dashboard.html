@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <style>
+    /* Estilos generales */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    
+    /* Estilos de la barra de navegación */
+    .navbar {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+    }
+    
+    .navbar ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .navbar li {
+      display: inline-block;
+      margin-right: 10px;
+    }
+    
+    .navbar li a {
+      color: #fff;
+      text-decoration: none;
+      padding: 5px 10px;
+    }
+    
+    /* Estilos del contenido del dashboard */
+    .content {
+      padding: 20px;
+    }
+    
+    h1 {
+      margin-top: 0;
+    }
+    
+    .chart {
+      width: 400px;
+      height: 300px;
+      margin-bottom: 20px;
+    }
+    
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    
+    .table th, .table td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+    }
+    
+    /* Estilos del formulario */
+    .form {
+      margin-bottom: 20px;
+    }
+    
+    .form label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    
+    .form input[type="text"],
+    .form textarea {
+      width: 100%;
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+    
+    .form input[type="submit"] {
+      background-color: #333;
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+    
+    /* Estilos de la tabla de datos */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    
+    .data-table th, .data-table td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+    }
+  </style>
+  <script>
+    // Funcionalidad del módulo de ventas
+    function agregarVenta() {
+      var nombreVenta = document.getElementById("nombre-venta").value;
+      var cantidadVenta = document.getElementById("cantidad-venta").value;
+      
+      // Aquí puedes realizar la lógica para agregar la venta a la base de datos
+      
+      // Luego, actualiza la tabla de datos
+      var tablaVentas = document.getElementById("tabla-ventas");
+      var row = tablaVentas.insertRow(-1);
+      var nombreCell = row.insertCell(0);
+      var cantidadCell = row.insertCell(1);
+      var accionesCell = row.insertCell(2);
+      
+      nombreCell.innerHTML = nombreVenta;
+      cantidadCell.innerHTML = cantidadVenta;
+      accionesCell.innerHTML = '<button onclick="editarVenta(this)">Editar</button> ' +
+                               '<button onclick="eliminarVenta(this)">Eliminar</button>';
+      
+      // Limpiar el formulario
+      document.getElementById("nombre-venta").value = "";
+      document.getElementById("cantidad-venta").value = "";
+    }
+    
+    function editarVenta(button) {
+      var row = button.parentNode.parentNode;
+      var nombreCell = row.cells[0];
+      var cantidadCell = row.cells[1];
+      
+      var nombreVenta = prompt("Ingrese el nuevo nombre:", nombreCell.innerHTML);
+      var cantidadVenta = prompt("Ingrese la nueva cantidad:", cantidadCell.innerHTML);
+      
+      // Aquí puedes realizar la lógica para actualizar la venta en la base de datos
+      
+      // Actualizar los valores en la tabla de datos
+      nombreCell.innerHTML = nombreVenta;
+      cantidadCell.innerHTML = cantidadVenta;
+    }
+    
+    function eliminarVenta(button) {
+      var row = button.parentNode.parentNode;
+      row.parentNode.removeChild(row);
+      
+      // Aquí puedes realizar la lógica para eliminar la venta de la base de datos
+    }
+    
+    // Funcionalidad del módulo de agendamiento de citas
+    function agendarCita() {
+      var nombreCita = document.getElementById("nombre-cita").value;
+      var fechaCita = document.getElementById("fecha-cita").value;
+      
+      // Aquí puedes realizar la lógica para agendar la cita en la base de datos
+      
+      // Luego, actualiza la tabla de datos
+      var tablaCitas = document.getElementById("tabla-citas");
+      var row = tablaCitas.insertRow(-1);
+      var nombreCell = row.insertCell(0);
+      var fechaCell = row.insertCell(1);
+      var accionesCell = row.insertCell(2);
+      
+      nombreCell.innerHTML = nombreCita;
+      fechaCell.innerHTML = fechaCita;
+      accionesCell.innerHTML = '<button onclick="editarCita(this)">Editar</button> ' +
+                               '<button onclick="eliminarCita(this)">Eliminar</button>';
+      
+      // Limpiar el formulario
+      document.getElementById("nombre-cita").value = "";
+      document.getElementById("fecha-cita").value = "";
+    }
+    
+    function editarCita(button) {
+      var row = button.parentNode.parentNode;
+      var nombreCell = row.cells[0];
+      var fechaCell = row.cells[1];
+      
+      var nombreCita = prompt("Ingrese el nuevo nombre:", nombreCell.innerHTML);
+      var fechaCita = prompt("Ingrese la nueva fecha:", fechaCell.innerHTML);
+      
+      // Aquí puedes realizar la lógica para actualizar la cita en la base de datos
+      
+      // Actualizar los valores en la tabla de datos
+      nombreCell.innerHTML = nombreCita;
+      fechaCell.innerHTML = fechaCita;
+    }
+    
+    function eliminarCita(button) {
+      var row = button.parentNode.parentNode;
+      row.parentNode.removeChild(row);
+      
+      // Aquí puedes realizar la lógica para eliminar la cita de la base de datos
+    }
+    
+    // Funcionalidad del módulo de promociones
+    function agregarPromocion() {
+      var tituloPromo = document.getElementById("titulo-promo").value;
+      var descripcionPromo = document.getElementById("descripcion-promo").value;
+      
+      // Aquí puedes realizar la lógica para agregar la promoción a la base de datos
+      
+      // Luego, actualiza la tabla de datos
+      var tablaPromociones = document.getElementById("tabla-promociones");
+      var row = tablaPromociones.insertRow(-1);
+      var tituloCell = row.insertCell(0);
+      var descripcionCell = row.insertCell(1);
+      var accionesCell = row.insertCell(2);
+      
+      tituloCell.innerHTML = tituloPromo;
+      descripcionCell.innerHTML = descripcionPromo;
+      accionesCell.innerHTML = '<button onclick="editarPromocion(this)">Editar</button> ' +
+                               '<button onclick="eliminarPromocion(this)">Eliminar</button>';
+      
+      // Limpiar el formulario
+      document.getElementById("titulo-promo").value = "";
+      document.getElementById("descripcion-promo").value = "";
+    }
+    
+    function editarPromocion(button) {
+      var row = button.parentNode.parentNode;
+      var tituloCell = row.cells[0];
+      var descripcionCell = row.cells[1];
+      
+      var tituloPromo = prompt("Ingrese el nuevo título:", tituloCell.innerHTML);
+      var descripcionPromo = prompt("Ingrese la nueva descripción:", descripcionCell.innerHTML);
+      
+      // Aquí puedes realizar la lógica para actualizar la promoción en la base de datos
+      
+      // Actualizar los valores en la tabla de datos
+      tituloCell.innerHTML = tituloPromo;
+      descripcionCell.innerHTML = descripcionPromo;
+    }
+    
+    function eliminarPromocion(button) {
+      var row = button.parentNode.parentNode;
+      row.parentNode.removeChild(row);
+      
+      // Aquí puedes realizar la lógica para eliminar la promoción de la base de datos
+    }
+  </script>
+</head>
+<body>
+  <div class="navbar">
+    <ul>
+      <li><a href="#">Inicio</a></li>
+      <li><a href="#ventas">Ventas</a></li>
+      <li><a href="#citas">Citas</a></li>
+      <li><a href="#promociones">Promociones</a></li>
+    </ul>
+  </div>
+
+    <section id="ventas">
+      <h2>Ventas</h2>
+      
+      <div class="form">
+        <label for="nombre-venta">Nombre:</label>
+        <input type="text" id="nombre-venta">
+        <label for="cantidad-venta">Cantidad:</label>
+        <input type="text" id="cantidad-venta">
+        <input type="submit" value="Agregar" onclick="agregarVenta()">
+      </div>
+      
+      <table id="tabla-ventas" class="data-table">
+        <caption>Ventas realizadas</caption>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Cantidad</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Sara Abril</td>
+            <td>1</td>
+            <td>
+              <button onclick="editarVenta(this)">Editar</button>
+              <button onclick="eliminarVenta(this)">Eliminar</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Paula Castillo </td>
+            <td>2</td>
+            <td>
+              <button onclick="editarVenta(this)">Editar</button>
+              <button onclick="eliminarVenta(this)">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    
+    <section id="citas">
+      <h2>Agendamiento de Citas</h2>
+      
+      <div class="form">
+        <label for="nombre-cita">Nombre:</label>
+        <input type="text" id="nombre-cita">
+        <label for="fecha-cita">Fecha:</label>
+        <input type="text" id="fecha-cita">
+        <input type="submit" value="Agendar" onclick="agendarCita()">
+      </div>
+      
+      <table id="tabla-citas" class="data-table">
+        <caption>Citas agendadas</caption>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Fecha</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Andrea Castro</td>
+            <td>2023-06-26</td>
+            <td>
+              <button onclick="editarCita(this)">Editar</button>
+              <button onclick="eliminarCita(this)">Eliminar</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Alexandra Prieto</td>
+            <td>2023-06-28</td>
+            <td>
+              <button onclick="editarCita(this)">Editar</button>
+              <button onclick="eliminarCita(this)">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    
+    <section id="promociones">
+      <h2>Promociones</h2>
+      
+      <div class="form">
+        <label for="titulo-promo">Título:</label>
+        <input type="text" id="titulo-promo">
+        <label for="descripcion-promo">Descripción:</label>
+        <textarea id="descripcion-promo"></textarea>
+        <input type="submit" value="Agregar" onclick="agregarPromocion()">
+      </div>
+      
+      <table id="tabla-promociones" class="data-table">
+        <caption>Promociones activas</caption>
+        <thead>
+          <tr>
+            <th>Título</th>
+            <th>Descripción</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Promoción 1</td>
+            <td>Descuento del 20% por el dia de tu cumpleaños</td>
+            <td>
+              <button onclick="editarPromocion(this)">Editar</button>
+              <button onclick="eliminarPromocion(this)">Eliminar</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Promoción 2</td>
+            <td>Promocion 30% por el dia del padre </td>
+            <td>
+              <button onclick="editarPromocion(this)">Editar</button>
+              <button onclick="eliminarPromocion(this)">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+</body>
+</html>

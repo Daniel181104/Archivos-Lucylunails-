@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Inicio de sesión</title>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  
+    <style>
+        body
+    
+    .container{
+
+    width: 400px;
+    background: rgb(255, 253, 253) ;
+    padding: 40px;
+    margin: auto;
+    margin-top: 50px;
+    border-radius: 10px;
+    box-shadow: 7px 13px 37px rgba(138, 88, 255, 0.9)       
+  
+  }
+    
+  .btn-pink {
+    background-color: #ec7df0;
+    border-color: #ffffff;
+    
+  
+  }
+  .btn-pink:hover {
+    background-color:rgba(138, 88, 255, 0.9);
+    border-color: #ffffff;
+  }
+.text-center {
+    background-color: #ffffff;
+    border-color:#ffffff;
+  }
+
+  .form-group{
+    color: #030303; 
+text-decoration: underline;  
+border-top-color: #b074ff; 
+height: 60px ;  
+width: 300px;
+
+  }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <img src="assets/img/Logo333.PNG"  alt="titulo" class="img-responsive"/>
+      <h1 class="text-center my-5">Inicio de sesión</h1>
+      <div class="row justify-content-center">
+        <form onsubmit="return validateForm()">
+          <div class="form-group">
+            <label for="username">Correo Electrónico:</label>
+            <input type="text" class="form-control" id="username" name="username" required>
+            <div id="usernameError" class="text-danger"></div>
+          </div>
+          <div class="form-group">
+            <label for="password">Contraseña:</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+            <div id="passwordError" class="text-danger"></div>
+          </div>
+          <p><button type="submit" class="btn btn-pink btn-block">Iniciar sesión</button></p>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      function validateForm() {
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+        var usernameError = document.getElementById('usernameError');
+        var passwordError = document.getElementById('passwordError');
+        var isValid = true;
+        
+        // Limpiar los mensajes de error
+        usernameError.textContent = '';
+        passwordError.textContent = '';
+        
+        // Validar el correo electrónico
+        if (!username) {
+          usernameError.textContent = 'Ingrese su correo electrónico';
+          isValid = false;
+        }
+        
+        // Validar la contraseña
+        if (!password) {
+          passwordError.textContent = 'Ingrese su contraseña';
+          isValid = false;
+        }
+        
+        return isValid;
+      }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  </body>
+</html>
+
+
